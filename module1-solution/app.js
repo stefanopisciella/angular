@@ -1,11 +1,11 @@
 (function () {
 'use strict';
 
-angular.module('lunchChecker', [])
-.controller('lunchController', lunchController);
+angular.module('LunchCheck', [])
+.controller('LunchCheckController', LunchCheckController);
 
-lunchController.$inject = ['$scope'];
-function lunchController($scope) {
+LunchCheckController.$inject = ['$scope'];
+function LunchCheckController($scope) {
   $scope.dishes = "";
   $scope.message = "";
 
@@ -21,24 +21,7 @@ function lunchController($scope) {
         $scope.message = "Too much!";
       }
     }
-
-
-
-    //
-    console.log(dishes);
   }
-
-  /*
-    $scope.name = "Yaakov";
-    $scope.stateOfBeing = "hungry";
-
-    $scope.sayMessage = function () {
-      return "Yaakov likes to eat healthy snacks at night!";
-    };
-
-    $scope.feedYaakov = function () {
-      $scope.stateOfBeing = "fed";
-    }; */
 }
 
 })();
