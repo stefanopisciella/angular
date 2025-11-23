@@ -18,6 +18,10 @@ function NarrowItDownController(MenuSearchService) {
       controller.found = found;
     });
   }
+
+  controller.onRemove = function (index) {
+    MenuSearchService.removeMenuItem(controller.found, index);
+  };
 }
 
 function foundItemsDirective() {
@@ -43,7 +47,8 @@ function MenuSearchService($q, $http) {
     if(searchTerm === "") {
       // user clicked the "Narrow It Down For Me!" button but didn't write
       // anything in the inputBox ==> no results should be shown to the user
-      return $q.resolve([]);
+      return $q.resolve([]);  // it returns a promise that contains an empty array
+      // because in this case no results must be shown to the user
     }
 
     return $http({  // return the promise object
@@ -59,8 +64,9 @@ function MenuSearchService($q, $http) {
 
           for(let i=0; i<menuItems.length; i++) { // looping the menu items
             let menuItem = menuItems[i];
+            let menuItemDescription = menuItem["description"];
 
-            if(menuItem["description"].includes(searchTerm)) {
+            if(menuItemDescription.includes(searchTerm.toLowerCase())) {
               found.push(menuItem);
             }
           }
@@ -69,6 +75,10 @@ function MenuSearchService($q, $http) {
         return found; // return the promise object
     });
   }
+
+  service.removeMenuItem = function (foundItems, menuItemToRemoveIndex) {
+    foundItems.splice(menuItemToRemoveIndex, 1);
+  };
 }
 
 })();
