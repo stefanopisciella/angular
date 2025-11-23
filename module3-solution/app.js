@@ -19,8 +19,8 @@ function NarrowItDownController(MenuSearchService) {
     });
   }
 
-  controller.onRemove = function (index) {
-    MenuSearchService.removeMenuItem(controller.found, index);
+  controller.onRemove = function (menutItemToRemoveIndex) {
+    MenuSearchService.removeMenuItem(controller.found, menutItemToRemoveIndex);
   };
 }
 
