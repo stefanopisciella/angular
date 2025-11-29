@@ -1,6 +1,6 @@
 <ul>
-  <li ng-repeat="menuItem in ctrl.found">
+  <li ng-repeat="menuItem in directiveCtrl.found">
     {{ menuItem.name }}, {{ menuItem.short_name }}, {{ menuItem.description }}
-    <button class="btn btn-danger" ng-click="ctrl.onRemove({menutItemToRemoveIndex: $index});">Don't want this one!</button>
+    <button class="btn btn-danger" ng-click="directiveCtrl.onRemove({menutItemToRemoveIndex: $index});">Don't want this one!</button>
   </li>
 </ul>

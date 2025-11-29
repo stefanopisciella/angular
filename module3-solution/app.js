@@ -19,7 +19,7 @@ function NarrowItDownController(MenuSearchService) {
     });
   }
 
-  controller.onRemove = function (menutItemToRemoveIndex) {
+  controller.removeMenuItem = function (menutItemToRemoveIndex) {
     MenuSearchService.removeMenuItem(controller.found, menutItemToRemoveIndex);
   };
 }
@@ -31,12 +31,16 @@ function foundItemsDirective() {
       found: '<',
       onRemove: '&'
     },
-    controller: NarrowItDownController,
-    controllerAs: 'ctrl',
+    controller: foundItemsDirectiveController,
+    controllerAs: 'directiveCtrl',
     bindToController: true
   };
 
   return ddo;
+}
+
+function foundItemsDirectiveController() {
+
 }
 
 MenuSearchService.$inject = ['$q', '$http'];
@@ -64,7 +68,7 @@ function MenuSearchService($q, $http) {
 
           for(let i=0; i<menuItems.length; i++) { // looping the menu items
             let menuItem = menuItems[i];
-            let menuItemDescription = menuItem["description"];
+            let menuItemDescription = menuItem["description"].toLowerCase();
 
             if(menuItemDescription.includes(searchTerm.toLowerCase())) {
               found.push(menuItem);
