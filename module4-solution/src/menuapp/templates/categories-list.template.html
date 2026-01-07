@@ -1,0 +1,6 @@
+<ul>
+  <li ng-repeat="category in $ctrl.categories"
+      ui-sref="items({categoryShortName: category['short_name']})"> <!-- $ctrl refers to the controller of the categories-list component itself --> <!-- TODO continue from here -->
+    {{ category.name }}
+  </li>
+</ul>
