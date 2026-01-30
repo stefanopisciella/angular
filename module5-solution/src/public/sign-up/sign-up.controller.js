@@ -3,11 +3,12 @@
 angular.module('restaurant')
 .controller('SignUpController', SignUpController);
 
-function SignUpController() {
-  var reg = this;
+SignUpController.$inject = ['UserService'];
+function SignUpController(UserService) {
+  var ctrl = this;
 
-  reg.submit = function () {
-    reg.completed = true;
+  ctrl.signUp = function () {
+    UserService.saveUserData(ctrl.user);
   };
 }
 
