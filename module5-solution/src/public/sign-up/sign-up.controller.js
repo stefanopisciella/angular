@@ -10,6 +10,7 @@ function SignUpController(UserService) {
   ctrl.signUp = function () {
     UserService.saveUserData(ctrl.user).then(function (userRegistered) {
       ctrl.userRegistered = userRegistered;
+      ctrl.userSubmittedForm = true;
     });
   };
 }

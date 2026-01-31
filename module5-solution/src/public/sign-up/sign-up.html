@@ -69,14 +69,14 @@
     </div>
 
     <!-- favourite menu item number -->
-    <div class="form-group" ng-class="">
+    <div class="form-group" ng-class="(signUpCtrl.userSubmittedForm && !signUpCtrl.userRegistered) ? 'has-error' : ''">
       <label class="control-label col-sm-3" for="menuItemNum">Favourite menu item number</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" name="menuItemNum" id="menuItemNum" placeholder="Favourite menu item number"
           ng-model="signUpCtrl.user.menuItemNum"
           required
         >
-        <span class="help-block" ng-if="">
+        <span class="help-block" ng-if="signUpCtrl.userSubmittedForm && !signUpCtrl.userRegistered">
           No such menu number exists
         </span>
       </div>
@@ -84,7 +84,7 @@
 
     <div class="form-group">
       <div class="col-sm-offset-3 col-sm-9">
-        <button type="button" class="btn btn-default" ng-disabled="usrSignUp.$invalid" ng-click="signUpCtrl.signUp()">Sign up</button>
+        <button type="button" class="btn btn-default" ng-disabled="usrSignUp.$invalid" ng-click="signUpCtrl.signUp()">Submit</button>
       </div>
     </div>
 
