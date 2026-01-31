@@ -26,6 +26,10 @@ function UserService($http) {
     });
   }
 
+  service.getUserData = function () {
+    return service.user;
+  }
+
   service.getUserPreferredMenuItem = function (preferredMenuItem) {
     return $http({  // return the promise object
       method: "GET",
