@@ -10,10 +10,19 @@ function UserService($http) {
   var service = this;
 
   service.saveUserData = function (user) {
-    service.getUserPreferredMenuItem(user.menuItemNum).then(function (result) {
-      service.foundUserPreferredMenuItem = result;
+    return service.getUserPreferredMenuItem(user.menuItemNum).then(function (foundUserPreferredMenuItem) {  // return the promise object
+      // TODO remove
+      console.log(foundUserPreferredMenuItem);
 
-      console.log(service.foundUserPreferredMenuItem);
+      if (foundUserPreferredMenuItem) {
+        // user can be registerd
+
+        service.user = user;
+        return true;
+      } else {
+        return false;
+      }
+
     });
   }
 
@@ -42,10 +51,6 @@ function UserService($http) {
     });
 
   }
-
-
 }
-
-
 
 })();

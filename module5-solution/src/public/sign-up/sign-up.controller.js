@@ -5,10 +5,12 @@ angular.module('restaurant')
 
 SignUpController.$inject = ['UserService'];
 function SignUpController(UserService) {
-  var ctrl = this;
+  let ctrl = this;
 
   ctrl.signUp = function () {
-    UserService.saveUserData(ctrl.user);
+    UserService.saveUserData(ctrl.user).then(function (userRegistered) {
+      ctrl.userRegistered = userRegistered;
+    });
   };
 }
 
