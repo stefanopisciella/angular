@@ -10,14 +10,17 @@ function UserService($http) {
   var service = this;
 
   service.saveUserData = function (user) {
-    return service.getUserPreferredMenuItem(user.menuItemNum).then(function (foundUserPreferredMenuItem) {  // return the promise object
+    return service.getUserPreferredMenuItem(user.menuItemNum).then(function (userPreferredMenuItem) {  // return the promise object
       // TODO remove
-      console.log(foundUserPreferredMenuItem);
+      console.log(userPreferredMenuItem);
 
-      if (foundUserPreferredMenuItem) {
+      if (userPreferredMenuItem) {
         // user can be registerd
 
+        user.preferredMenuItem = userPreferredMenuItem.menuItem;
+        user.preferredMenuItemCategory = userPreferredMenuItem.menuItemCategory;
         service.user = user;
+
         return true;
       } else {
         return false;
@@ -43,10 +46,10 @@ function UserService($http) {
         let categoryMenuItems = category['menu_items'];
 
         for (let i = 0; i < categoryMenuItems.length; i++) {
-          let categoryMenuItem = categoryMenuItems[i];
+          let menuItem = categoryMenuItems[i];
 
-          if (categoryMenuItem["short_name"] === preferredMenuItem) {
-            return categoryMenuItem;
+          if (menuItem["short_name"].toLowerCase() === preferredMenuItem.toLowerCase()) {
+            return {menuItem: menuItem, menuItemCategory: category.category.short_name};
           }
         }
       }
