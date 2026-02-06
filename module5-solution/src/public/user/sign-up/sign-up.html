@@ -69,7 +69,7 @@
     </div>
 
     <!-- favourite menu item number -->
-    <div class="form-group" ng-class="(signUpCtrl.userSubmittedForm && !signUpCtrl.userRegistered) ? 'has-error' : ''">
+    <div class="form-group" ng-class="((signUpCtrl.userSubmittedForm && !signUpCtrl.userRegistered) || (usrSignUp.menuItemNum.$invalid && usrSignUp.menuItemNum.$touched)) ? 'has-error' : ''">
       <label class="control-label col-sm-3" for="menuItemNum">Favourite menu item number</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" name="menuItemNum" id="menuItemNum" placeholder="Favourite menu item number"
@@ -78,6 +78,9 @@
         >
         <span class="help-block" ng-if="signUpCtrl.userSubmittedForm && !signUpCtrl.userRegistered">
           No such menu number exists
+        </span>
+        <span class="help-block" ng-if="usrSignUp.menuItemNum.$invalid && usrSignUp.menuItemNum.$touched">
+          Enter the menu number
         </span>
       </div>
     </div>
